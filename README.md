@@ -1,46 +1,84 @@
-# Getting Started with Create React App
+# Exercise delivery
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Documentation:
+API -> https://services.odata.org/TripPinRESTierService/(S(hespbvdrrmhquk5vqlzcpbro))/People
+SyncFusion DOC -> https://ej2.syncfusion.com/react/documentation/grid/getting-started/
 
-## Available Scripts
+## Application structure
 
-In the project directory, you can run:
+// TODO: Explain folder structuring as clearly as if you were going to give it in the hands of your colleague to perform bugfixes and add features on this project.
 
-### `yarn start`
+## Summary
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Specs:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The applicant must produce in an elapsed 1w on StackBlitz a source code in React that renders a datagrid from the SyncFusion library by means of an API call.
+It would be great to be able to do the project in TypeScript, but in case you are more comfortable with JS you can create your own empty stackblitz to start with.
+NB: Make the code considering that other colleagues may take over the source.
 
-### `yarn test`
+1. Show columns: FirstName, LastName, Gender, Age, Emails
+   - // TODO: Explain the process
+2. In case of null value show placeholder "--"
+   - // TODO: Explain the process
+3. For the Gender column, convert the Male and Female value to an icon of your choice
+   - // TODO: Explain the process
+4. For the Emails column show the list of addresses
+   - // TODO: Explain the process
+5. Realize client side pagination with no.5 items per page
+   - // TODO: Explain the process
+6. Introduce a column chooser to select the columns you want to see on the screen
+   - // TODO: Explain the process
+7. Make a button outside the table that when clicked shows/hides the table. When the table reappears, another GET should not start to retrieve-are data.
+   - // TODO: Explain the process
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Below are optional 1-level activities:
 
-### `yarn build`
+8. Introduce two buttons to be able to filter gender
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- // TODO: Explain the process
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+9. Introduce a button to GET the data with a debounce (try to use redux-saga)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- // TODO: Explain the process
 
-### `yarn eject`
+## Below are optional 2-level activities:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+10. Introducing Redux and managing API calls via Redux-Saga
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- // TODO: Explain the process
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+11. Managing email through a child grid
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- // TODO: Explain the process
 
-## Learn More
+12. Implement export via excel using syncfusion table functionality.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- // TODO: Explain the process
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Below are optional 3-level activities:
+
+13. Enable inline editing on the row(without patching to backend) and in particular on the Gender field
+
+- // TODO: Explain the process
+
+14. Create a custom toolbar with a custom button that removes only odd rows
+
+- // TODO: Explain the process
+
+15. Create custom button that removes only odd rows but this time add it to the Out Of The Box toolbar (the original Syncfusion one)
+
+- // TODO: Explain the process
+
+16. Apply a mapping on the Gender column when exporting, you want the data on the excel to appear formatted differently from how it is shown in the grid.
+    Example:
+    In table it will show via an icon
+    In excel it will show via a label: Male (Gender) or / Female (Gender)
+
+- // TODO: Explain the process
+
+## Thoughts
+
+// TODO:
+
+- Did you find complications?
+- Did you find bugs in the Syncfusion library?
