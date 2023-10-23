@@ -3,7 +3,7 @@ export interface User {
   FirstName: string;
   LastName: string;
   MiddleName: string | null;
-  Gender: string;
+  Gender: string | null;
   Age: number | null;
   Emails: string[];
   FavoriteFeature: string;
