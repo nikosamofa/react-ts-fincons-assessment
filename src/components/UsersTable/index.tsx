@@ -97,11 +97,19 @@ export const UsersTable: FC<UsersTableProps> = ({ gendersShow }) => {
     if (!gridRef.current) return;
     if (args.item.id === "grid_excelexport") {
       gridRef.current.excelExport({
-        dataSource: users?.filter(
-          (user) =>
-            (user.Gender === "Male" && gendersShow.male) ||
-            (user.Gender === "Female" && gendersShow.female)
-        ),
+        dataSource: users
+          ?.filter(
+            (user) =>
+              (user.Gender === "Male" && gendersShow.male) ||
+              (user.Gender === "Female" && gendersShow.female)
+          )
+          .map((user) => ({
+            FirstName: user.FirstName ?? "--",
+            LastName: user.LastName ?? "--",
+            Gender: `${user.Gender} (Gender)`,
+            Age: user.Age ?? "--",
+            Emails: user.Emails,
+          })),
       });
     }
     if (args.item.id === "remove-odd-rows") {

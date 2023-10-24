@@ -10,7 +10,6 @@ import {
 } from "../types";
 
 import { User } from "../../types";
-import { PayloadAction } from "@reduxjs/toolkit";
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* fetchUsers() {
