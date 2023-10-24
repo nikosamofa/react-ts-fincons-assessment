@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { UsersTable } from "./UsersTable";
 import { ShowHideButton } from "./ShowHideButton";
-import { GendersShow } from "types";
-import { GenderFilter } from "./GenderFilter";
+import { GendersShow } from "../types";
+import { Toolbar } from "./Toolbar";
+import { RefetchButton } from "./RefetchButton";
 import styles from "./Fincons.module.css";
 
 export const Fincons = () => {
@@ -16,9 +17,10 @@ export const Fincons = () => {
     <div>
       <div className={styles.buttonContainer}>
         <ShowHideButton hidden={tableHidden} updateHidden={setTableHidden} />
+        <RefetchButton />
       </div>
       <div className={styles.buttonContainer}>
-        <GenderFilter gendersShow={gendersShow} updateGendersShow={setGendersShow} />
+        <Toolbar gendersShow={gendersShow} updateGendersShow={setGendersShow} />
       </div>
       {!tableHidden && <UsersTable gendersShow={gendersShow} />}
     </div>
