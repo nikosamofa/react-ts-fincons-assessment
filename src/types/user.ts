@@ -1,3 +1,8 @@
+export interface GendersShow {
+  male: boolean;
+  female: boolean;
+}
+
 export interface User {
   UserName: string;
   FirstName: string;

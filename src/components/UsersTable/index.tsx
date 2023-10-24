@@ -1,10 +1,30 @@
-import { useEffect, useMemo } from "react";
+import { FC, useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, USERS_FETCH_REQUEST } from "store/types";
-import { ColumnDirective, ColumnsDirective, GridComponent } from "@syncfusion/ej2-react-grids";
+import {
+  ColumnChooser,
+  ColumnDirective,
+  ColumnsDirective,
+  GridComponent,
+  Inject,
+  Page,
+  Toolbar,
+} from "@syncfusion/ej2-react-grids";
 import { renderEmails, renderGenderIcon } from "./helpers";
+import { GendersShow } from "types";
 
-export const UsersTable = () => {
+const tableOptions = {
+  pageOptions: {
+    pageSize: 5,
+  },
+  toolbarOptions: ["ColumnChooser"],
+};
+
+interface UsersTableProps {
+  gendersShow: GendersShow;
+}
+
+export const UsersTable: FC<UsersTableProps> = ({ gendersShow }) => {
   const { users } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
 
@@ -19,14 +39,20 @@ export const UsersTable = () => {
       return users;
     }
 
-    return users.map((user) => ({
-      FirstName: user.FirstName ?? "--",
-      LastName: user.LastName ?? "--",
-      Gender: renderGenderIcon(user.Gender),
-      Age: user.Age ?? "--",
-      Emails: renderEmails(user.Emails),
-    }));
-  }, [users]);
+    return users
+      .filter(
+        (user) =>
+          (user.Gender === "Male" && gendersShow.male) ||
+          (user.Gender === "Female" && gendersShow.female)
+      )
+      .map((user) => ({
+        FirstName: user.FirstName ?? "--",
+        LastName: user.LastName ?? "--",
+        Gender: renderGenderIcon(user.Gender),
+        Age: user.Age ?? "--",
+        Emails: renderEmails(user.Emails),
+      }));
+  }, [users, gendersShow]);
 
   if (!memoizedUsers) {
     return <div>No users data</div>;
@@ -34,7 +60,13 @@ export const UsersTable = () => {
 
   return (
     <div>
-      <GridComponent dataSource={memoizedUsers}>
+      <GridComponent
+        dataSource={memoizedUsers}
+        allowPaging={true}
+        pageSettings={tableOptions.pageOptions}
+        toolbar={tableOptions.toolbarOptions}
+        showColumnChooser={true}
+      >
         <ColumnsDirective>
           <ColumnDirective
             field="FirstName"
@@ -70,6 +102,7 @@ export const UsersTable = () => {
             disableHtmlEncode={false}
           />
         </ColumnsDirective>
+        <Inject services={[Page, Toolbar, ColumnChooser]} />
       </GridComponent>
     </div>
   );

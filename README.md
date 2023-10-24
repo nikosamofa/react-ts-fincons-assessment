@@ -6,7 +6,18 @@ SyncFusion DOC -> https://ej2.syncfusion.com/react/documentation/grid/getting-st
 
 ## Application structure
 
-// TODO: Explain folder structuring as clearly as if you were going to give it in the hands of your colleague to perform bugfixes and add features on this project.
+- src
+  - components: All components are inside this directory
+    - common: Common components like buttons inside this directory
+    - UsersTable: The users table inside here
+    - Fincons.tsx: This is the main component which is rendered inside App
+    - etc.
+  - store: Redux Store
+    - reducers
+    - sagas
+    - types: The types used for store are defined
+  - types: All the types except used for store are defined here
+- public/assets: The asset files like image are defined here
 
 ## Summary
 
@@ -17,27 +28,48 @@ It would be great to be able to do the project in TypeScript, but in case you ar
 NB: Make the code considering that other colleagues may take over the source.
 
 1. Show columns: FirstName, LastName, Gender, Age, Emails
-   - // TODO: Explain the process
+   - [Reference](https://ej2.syncfusion.com/react/documentation/grid/getting-started)
+   - Added CSS reference to `App.css`
+   - Show columns by using `GridComponent`, `ColumnsDirective`, `ColumnDirective` from module `@syncfusion/ej2-react-grids`
 2. In case of null value show placeholder "--"
-   - // TODO: Explain the process
+   - While defining `memoizedUsers`, created a new array mapped from `users` data, each object defined by the following code.
+
+```js
+   {
+      FirstName: user.FirstName ?? "--",
+      ...
+   }
+```
+
 3. For the Gender column, convert the Male and Female value to an icon of your choice
-   - // TODO: Explain the process
+   - Downloaded icons and stored in [public/assets](public/assets) directory: `Male.png` and `Female.png`
+   - The helper function `renderGenderIcon` will return raw html `<img>` with src for those files depending on the `gender` value
+   - The `ColumnDirective` component used to render column data has an option `disableHtmlEncode={false}`, which enables to render raw html.
 4. For the Emails column show the list of addresses
-   - // TODO: Explain the process
+   - Pretty similar to above, added the option `disableHtmlEncode={false}` for the Emails column
+   - The helper function `renderEmails` returns raw html `ul` with the emails listed by `li`.
 5. Realize client side pagination with no.5 items per page
-   - // TODO: Explain the process
+   - [Reference](https://ej2.syncfusion.com/react/documentation/grid/paging#pager-with-page-size-dropdown)
+   - `pageSize: 5` is used instead of `8` from the reference
 6. Introduce a column chooser to select the columns you want to see on the screen
-   - // TODO: Explain the process
+   - [Reference](https://ej2.syncfusion.com/react/documentation/grid/columns/column-chooser)
+   - Exactly the same process as the process
 7. Make a button outside the table that when clicked shows/hides the table. When the table reappears, another GET should not start to retrieve-are data.
-   - // TODO: Explain the process
+   - The `Fincons` component has a state `tableHidden: boolean`, which is controlled by a child component `ShowHideButton`
+   - If the value is `true`, don't render the `UsersTable`, otherwise render the `UsersTable`
+   - In the [UsersTable](src/components/UsersTable/index.tsx) component, upon mounted, check if the redux store has the `users` data
+   - If not, dispatch action with type `USERS_FETCH_REQUEST` to redux
+   - If the `users` data exist in redux, create a memoized variable `memoizedUsers`. This will improve the performance when some unnecessary values are updated.
 
 ## Below are optional 1-level activities:
 
 8. Introduce two buttons to be able to filter gender
 
-- // TODO: Explain the process
+- component `GenderFilter` includes those 2 buttons and accepts props `gendersShow` and `updateGendersShow`
+- `Fincons` component has state `gendersShow: { male: boolean; female: boolean; }` and this state is sent down as props to both components `GenderFilter` and `UsersTable`
+- In `UsersTable`, upon the boolean value `male` and `female`, the `users` data is filtered to define the `memoizedUsers` data, which is actually rendered on the screen.
 
-9. Introduce a button to GET the data with a debounce (try to use redux-saga)
+1. Introduce a button to GET the data with a debounce (try to use redux-saga)
 
 - // TODO: Explain the process
 
