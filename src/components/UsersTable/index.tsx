@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useRef, useState } from "react";
+import { FC, useEffect, useMemo, useRef } from "react";
 import { DataManager, Query } from "@syncfusion/ej2-data";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, USERS_FETCH_REQUEST, REMOVE_ODD_ROWS, UPDATE_USER } from "../../store/types";
@@ -12,11 +12,8 @@ import {
   Toolbar,
   ExcelExport,
   Edit,
-  CellEditArgs,
   SaveEventArgs,
-  BeginEditArgs,
 } from "@syncfusion/ej2-react-grids";
-import { EmitType } from "@syncfusion/ej2-base";
 import { renderEmails, renderGenderIcon } from "./helpers";
 import { GendersShow, User } from "../../types";
 
